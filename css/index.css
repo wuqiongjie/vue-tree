@@ -1,0 +1,32 @@
+.ul-container {
+    
+}
+
+.ul-container ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.ul-container ul li {
+   padding-left: 20px;
+}
+
+.ul-container .li-text {
+    height: 40px;
+    width: 200px;
+    line-height: 40px;
+    display: inline-block;
+}
+
+.ul-container .li-text .text {
+    font-size: 14px;
+    margin-left: 10px;
+}
+
+.icon-one-color {
+    color: #1296db;
+}
+
+.icon-two-color {
+    color: #bfbfbf;
+}

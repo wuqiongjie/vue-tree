@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="css/normalize.css">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" href="iconfont/iconfont.css">
+    <title>树形结构</title>
+</head>
+<body>
+    
+    <div class="ul-container" id="main">
+        <ul>
+            <my-tree 
+                v-for="(item, index) in datas" 
+                :tdata="item" 
+                :key="item.value">
+            </my-tree>
+        </ul>
+    </div>
+    
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+<script>
+
+    Vue.component('my-tree', {
+        name: 'tree',
+        props: ['tdata'],
+        data() {
+            return{
+                isOpen: false
+            }
+        },
+        template: `
+        <li>
+            <div class="li-text">
+                <span 
+                    class="iconfont icon-two-color" :class="[isOpen==true?'icon-down':'icon-right']"
+                    v-if="tdata.children && tdata.children.length"
+                    @click="toggle"></span>
+                <span class="iconfont icon-wenjian icon-one-color" v-if="tdata.children && tdata.children.length"></span>
+                <span class="iconfont icon-file icon-two-color" v-if="!(tdata.children && tdata.children.length)"></span>
+                <span class="text">{{tdata.value}}</span>
+            </div>
+           
+                <ul v-if="tdata.children && tdata.children.length && isOpen">
+                    <my-tree 
+                        v-for="(item, index) in tdata.children" 
+                        :tdata="item" 
+                        :key="item.value">
+                    </my-tree>
+                </ul>
+            
+        </li>
+        `,
+
+        methods: {
+            toggle() {
+                this.isOpen = !this.isOpen;
+            }
+        },
+    });
+
+    new Vue({
+        el: '#main',
+       
+        data: {
+            select: '',
+            datas: [
+                {
+                    value: '1',
+                    children: [
+                        {
+                            value: '1.1',
+                            children: [
+                                {
+                                    value: '1.1.1',
+                                    children: []
+                                },
+                                {
+                                    value: '1.1.2',
+                                    children: []
+                                },
+                                {
+                                    value: '1.1.3',
+                                    children: []
+                                }
+                            ]
+                        },
+                        {
+                            value: '1.2',
+                            children: [
+                                {
+                                    value: '1.2.1',
+                                    children: []
+                                },
+                                {
+                                    value: '1.2.2',
+                                    children: []
+                                },
+                                {
+                                    value: '1.2.3',
+                                    children: []
+                                }
+                            ]
+                        },
+                        {
+                            value: '1.3',
+                            children: [
+                                {
+                                    value: '1.3.1',
+                                    children: []
+                                },
+                                {
+                                    value: '1.3.2',
+                                    children: []
+                                },
+                                {
+                                    value: '1.3.3',
+                                    children: []
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    value: '2',
+                    children: [
+                        {
+                            value: '2.1',
+                            children: [
+                                {
+                                    value: '2.1.1',
+                                    children: []
+                                },
+                                {
+                                    value: '2.1.2',
+                                    children: []
+                                },
+                                {
+                                    value: '2.1.3',
+                                    children: []
+                                }
+                            ]
+                        },
+                        {
+                            value: '2.2',
+                            children: [
+                                {
+                                    value: '2.2.1',
+                                    children: []
+                                },
+                                {
+                                    value: '2.2.2',
+                                    children: []
+                                },
+                                {
+                                    value: '2.2.3',
+                                    children: []
+                                }
+                            ]
+                        },
+                        {
+                            value: '2.3',
+                            children: [
+                                {
+                                    value: '2.3.1',
+                                    children: []
+                                },
+                                {
+                                    value: '2.3.2',
+                                    children: []
+                                },
+                                {
+                                    value: '2.3.3',
+                                    children: []
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+
+    });
+</script>
+</html>
